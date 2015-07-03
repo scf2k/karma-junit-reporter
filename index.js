@@ -50,7 +50,7 @@ var JUnitReporter = function(baseReporterDecorator, config, logger, helper, form
       initliazeXmlForBrowser(browser);
       suite = suites[browser.id];
       if (browser.lastResult.error) {
-          suite.ele('system-err').dat(allMessages.join() + '\n');
+          suite.ele('error').dat(allMessages.join() + '\n');
           allMessages = [];
       }
       console.log('stdout');
