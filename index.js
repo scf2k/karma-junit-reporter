@@ -53,6 +53,8 @@ var JUnitReporter = function(baseReporterDecorator, config, logger, helper, form
           suite.ele('system-err').dat(allMessages.join() + '\n');
           allMessages = [];
       }
+      console.log('stdout');
+      console.error('stderr');
       // This browser did not signal `onBrowserStart`. That happens
       // if the browser timed out duging the start phase.
       return;
