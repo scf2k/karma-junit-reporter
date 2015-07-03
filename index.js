@@ -47,6 +47,12 @@ var JUnitReporter = function(baseReporterDecorator, config, logger, helper, form
     var suite = suites[browser.id];
 
     if (!suite) {
+      initliazeXmlForBrowser(browser);
+      suite = suites[browser.id];
+      if (browser.lastResult.error) {
+          suite.ele('system-err').dat(allMessages.join() + '\n');
+          allMessages = [];
+      }
       // This browser did not signal `onBrowserStart`. That happens
       // if the browser timed out duging the start phase.
       return;
@@ -61,6 +67,7 @@ var JUnitReporter = function(baseReporterDecorator, config, logger, helper, form
 
     suite.ele('system-out').dat(allMessages.join() + '\n');
     suite.ele('system-err');
+    allMessages = [];
   };
 
   this.onRunComplete = function() {
